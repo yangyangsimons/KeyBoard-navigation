@@ -1,132 +1,134 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
+
 <head>
-	<meta charset="UTF-8">
-	<title>My Navigation</title>
-	<link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <title>My Navigation</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-	<header></header>	
-	<main>
-		<div class="wrapper" id="main">
-			
-		</div>
-	</main>
-	<footer></footer>
-	<script>
+    <header></header>
+    <main>
+        <div class="wrapper" id="main">
 
-		// 1. Initiation
-		var hashA = init()
-		var keys = hashA['keys']
-		var hash = hashA['hash']
-		
-		// 2. generate the keyboard
-		
-		generateKeyboard(keys, hash)
-		
-		// 3. listen to user event
-		listenToUser(hash)
-		
-		// function body
-		function getFromLocalStorage(name){
-			return JSON.parse(localStorage.getItem(name) || 'null')
-		}
+        </div>
+    </main>
+    <footer></footer>
+    <script>
 
-		function tag(tagName){
-			return document.createElement(tagName) 
-		}
-		
-		function createSpan(textContent){
-			var span = tag('span')
-			span.textContent = textContent
-			span.className = "text"
-			return span
-		}
-		function createButton(id){
-			var button = tag('button')
-			button.textContent = 'Edit'
-			button.id = id
-			button.onclick = function(xzkjcnxlkcjlk){
-				// xzkjcnxlkcjlk['target'] user click element
-				var button2 = xzkjcnxlkcjlk['target']
-				var img2 = button2.previousSibling
-				var key = button2['id'] // q w e r t
-				var x = prompt('Give a website url') // qq.com
-				hash[key] = x  
-				img2.src = 'http://'+x + '/favicon.ico'
-				img2.onerror = function(xxx){
-					xxx.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
-				}
-				localStorage.setItem('zzz', JSON.stringify(hash))
-			}
-			return button
-		}
-		function createImage(domain){
-			var img = tag('img')
-			if(domain){
-				img.src = 'http://'+ domain + '/favicon.ico'
-			}else{
-				img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
-			}
-			img.onerror = function(xxx){
-				xxx.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
-			}
-			return img
-		}
-		function init(){
-			var keys = {
-				'0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
-				'1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
-				'2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
-				'length': 3
-			}
-			var hash = {'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com' , 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
-			}
-			
-			var hashInLocalStorage = getFromLocalStorage('zzz') 
-			if(hashInLocalStorage){
-				hash = hashInLocalStorage
-			}
-			return {
-				"keys": keys,
-				"hash": hash
-			}
-		}
-		function generateKeyboard(keys, hash){
-			for(var index=0; index< keys['length']; index = index+1 ){
-				var div = tag('div')
-				div.className = 'row'
+        // 1. Initiation
+        var hashA = init()
+        var keys = hashA['keys']
+        var hash = hashA['hash']
 
-				main.appendChild(div)
+        // 2. generate the keyboard
 
-			var row = keys[index]  
-			for(var index2 =0;index2< row['length']; index2 = index2 + 1){
-				var span = createSpan(row[index2])
+        generateKeyboard(keys, hash)
 
-				var button = createButton(row[index2])
+        // 3. listen to user event
+        listenToUser(hash)
 
-				var img = createImage(hash[row[index2]])
+        // function body
+        function getFromLocalStorage(name) {
+            return JSON.parse(localStorage.getItem(name) || 'null')
+        }
 
-				var kbd = tag('kbd')
-				kbd.className = 'key'
+        function tag(tagName) {
+            return document.createElement(tagName)
+        }
 
-				kbd.appendChild(span)
-				kbd.appendChild(img)
-				kbd.appendChild(button)
+        function createSpan(textContent) {
+            var span = tag('span')
+            span.textContent = textContent
+            span.className = "text"
+            return span
+        }
+        function createButton(id) {
+            var button = tag('button')
+            button.textContent = 'Edit'
+            button.id = id
+            button.onclick = function (xzkjcnxlkcjlk) {
+                // xzkjcnxlkcjlk['target'] user click element
+                var button2 = xzkjcnxlkcjlk['target']
+                var img2 = button2.previousSibling
+                var key = button2['id'] // q w e r t
+                var x = prompt('Give a website url') // qq.com
+                hash[key] = x
+                img2.src = 'http://' + x + '/favicon.ico'
+                img2.onerror = function (xxx) {
+                    xxx.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+                }
+                localStorage.setItem('zzz', JSON.stringify(hash))
+            }
+            return button
+        }
+        function createImage(domain) {
+            var img = tag('img')
+            if (domain) {
+                img.src = 'http://' + domain + '/favicon.ico'
+            } else {
+                img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+            }
+            img.onerror = function (xxx) {
+                xxx.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+            }
+            return img
+        }
+        function init() {
+            var keys = {
+                '0': { 0: 'q', 1: 'w', 2: 'e', 3: 'r', 4: 't', 5: 'y', 6: 'u', 7: 'i', 8: 'o', 9: 'p', length: 10 },
+                '1': { 0: 'a', 1: 's', 2: 'd', 3: 'f', 4: 'g', 5: 'h', 6: 'j', 7: 'k', 8: 'l', length: 9 },
+                '2': { 0: 'z', 1: 'x', 2: 'c', 3: 'v', 4: 'b', 5: 'n', 6: 'm', length: 7 },
+                'length': 3
+            }
+            var hash = {
+                'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com', 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
+            }
+            var hashInLocalStorage = getFromLocalStorage('zzz')
+            if (hashInLocalStorage) { 
+                hash = hashInLocalStorage
+            }
+            return {
+                "keys": keys,
+                "hash": hash
+            }
+        }
+        function generateKeyboard(keys, hash) {
+            for (var index = 0; index < keys['length']; index = index + 1) {
+                var div = tag('div')
+                div.className = 'row'
 
-				div.appendChild(kbd)
-			}
-		}
-	}	
-	function listenToUser(hash){
-		document.onkeypress = function(xzkjcnxlkcjlk){
-				var key = xzkjcnxlkcjlk['key'] // q w e
-				var website = hash[key]
-				//location.href = 'http://'+website
-				window.open('http://'+website, '_blank')
-			}
-		}
+                main.appendChild(div)
 
-	</script>
+                var row = keys[index]
+                for (var index2 = 0; index2 < row['length']; index2 = index2 + 1) {
+                    var span = createSpan(row[index2])
+
+                    var button = createButton(row[index2])
+
+                    var img = createImage(hash[row[index2]])
+
+                    var kbd = tag('kbd')
+                    kbd.className = 'key'
+
+                    kbd.appendChild(span)
+                    kbd.appendChild(img)
+                    kbd.appendChild(button)
+
+                    div.appendChild(kbd)
+                }
+            }
+        }
+        function listenToUser(hash) {
+            document.onkeypress = function (xzkjcnxlkcjlk) {
+                var key = xzkjcnxlkcjlk['key'] // q w e
+                var website = hash[key]
+                //location.href = 'http://'+website
+                window.open('http://' + website, '_blank')
+            }
+        }
+    </script>
 </body>
+
 </html>
